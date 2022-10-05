@@ -1,8 +1,8 @@
-import magic
 from django.conf import settings
 
 import cv2
 import numpy
+import magic
 import base64
 import mimetypes
 
