@@ -6,7 +6,7 @@ import numpy
 import base64
 import mimetypes
 
-MODEL_PATH = settings.BASE_DIR / "models" / "EDSR_x4.pb"
+MODEL_PATH = str(settings.BASE_DIR / "models" / "EDSR_x4.pb")
 
 def _bytes_to_mat(image:bytes):
     numpy_buffer = numpy.frombuffer(image,numpy.uint8)
