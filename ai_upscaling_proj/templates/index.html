@@ -2,13 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/icons-upload-icon-32.png">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>File Upload</title>
+    <script src="./js/dropZone.js" defer></script>
+    <script src="./js/range.js" defer></script>
+    <script src="./js/buttons.js" defer></script>
+    <script src="./js/form.js" defer></script>
 </head>
 <body>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Submit</button>
-        </form>
+    <form class="content" id="generateForm" method="post" enctype="multipart/form-data">
+        <div class="drop-box">
+            <div class="img-box">
+                <img src="./images/file-upload.svg" alt="upload image icon">
+            </div>
+            <div class="cover"></div>
+            <label for="file">Drop files here or click to upload</label>
+            <input type="file" id="file" accept="image/png, image/jpeg, image/jpg">
+        </div>
+        <div class="range-box">
+            <label for="range" class="range-label">
+                <p>Select scale:</p>
+                <output for="range" class="range-output"></output>
+                <input id="range" class="range-input" type="range" min="0" max="5" value="2">
+            </label>
+        </div>
+        <div class="btn-div">
+            <button class="upscale-btn">Upscale</button>
+        </div>
+    </form>
+
+    <dialog class="output-box">
+        <button class="close-btn"><img class="x-img" src="./images/x-icon.png" alt="x icon"></button>
+        <div class="display-box">
+            <div class="box">
+                <img id="original-img" src="" alt="uploaded image">
+            </div>
+            <div class="box">
+                <p class="box-text">Scaled image</p>
+                <img class="box-img" src="./images/arrow-pointing-right.svg" alt="arrow pointing right">
+            </div>
+            <div class="box">
+                <img id="upscaled-img" src="" alt="scaled image">
+            </div>
+        </div>
+   </dialog>
 </body>
 </html>
