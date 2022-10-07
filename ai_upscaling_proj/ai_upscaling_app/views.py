@@ -1,9 +1,10 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.shortcuts import render
 from . import functions
 from . import forms
 
-
+@csrf_exempt
 def index(request):
     if request.method == "GET":
         form = forms.ImageForm()

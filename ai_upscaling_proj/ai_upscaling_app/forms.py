@@ -5,6 +5,6 @@ class ImageForm(forms.Form):
     scale = forms.IntegerField(
             initial=4,
             min_value=1,
-            max_value=10,
+            max_value=5,
             widget=forms.NumberInput(attrs={"type":"range"})
         )

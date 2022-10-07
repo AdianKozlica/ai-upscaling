@@ -1,4 +1,3 @@
-const form = document.querySelector('form');
 const modal = document.querySelector('.output-box');
 const closeBtn = document.querySelector('.close-btn');
 
@@ -7,14 +6,15 @@ const upscaledImg = document.querySelector('#upscaled-img');
 
 $("#generateForm").submit(e => {
     e.preventDefault();
-    const form = $(this);
-
+    let form = document.getElementById("generateForm");
+    let formData = new FormData(form);
     if(flag)
     {
         $.ajax({
             type:'POST',
-            url:'/',
-            data:form.serialize(),
+            data:formData,
+            processData: false,
+            contentType: false,
             success: data => {
                 originalImg.setAttribute('src', URL.createObjectURL(fileInput.files[0]));
                 upscaledImg.setAttribute('src', data);
