@@ -1,0 +1,27 @@
+/* Css related to the root, body, html (and such) elements*/
+@import url('./base.css');
+
+/* Drop box related css */
+@import url('./dropBox.css');
+
+/* Ranged input related css */
+@import url('./rangeBox.css');
+
+/* Button related css */
+@import url('./button.css');
+
+/* Dialog related css */
+@import url('./dialog.css');
+
+/* Main content container */
+.content {
+    width: 90vw;
+    height: 80vh;
+    display: grid;
+    grid-template-rows: 4fr 1fr 1fr;
+    grid-template-columns: 1fr;
+}
+
+
+
+
