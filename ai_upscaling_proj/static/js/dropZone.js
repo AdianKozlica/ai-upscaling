@@ -4,12 +4,8 @@ const cover = document.querySelector('.cover');
 
 const imgBox = dropZone.querySelector('.img-box');
 
-const fileLabel = dropZone.querySelector('label');
-const fileInput = document.querySelector('input');
-
-const acceptedFileTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-
-let flag = false;
+const fileLabel = dropZone.querySelector('#file-label');
+const fileInput = document.querySelector('#file');
 
 const successText = () => fileLabel.innerText = 'File successfully added';
 const errorText = () => fileLabel.innerText = 'An error occurred, try again';
@@ -33,30 +29,6 @@ const setAnimation = (animation1='', animation2='') => {
     cover.style.animationName = animation2;
 }
 
-const fileTypeCheck = fileType => {
-    for(const acceptedFileType of acceptedFileTypes)
-    {
-        if(fileType === acceptedFileType)
-        {   
-            setAnimation('successDrop', 'successCover');
-            successText();
-            flag = true;
-            return true;
-        }
-    }
-    setAnimation('failDrop', 'failCover');
-    errorText();
-    flag = false;
-    return false;
-}
-
-const fileVerification = fileInput => {
-    if(!fileTypeCheck(fileInput.files[0].type))
-    {
-        resetInput();
-    }
-}
-
 cover.addEventListener('dragover', e => {
     e.preventDefault();
     coverAnimate();
@@ -72,12 +44,13 @@ cover.addEventListener('drop', e => {
     e.preventDefault();
     coverStopAnimate();
     fileInput.files = e.dataTransfer.files;
-
-    fileVerification(fileInput);
+    setAnimation('successDrop', 'successCover');
+    successText();
 });
 
 fileInput.addEventListener('change', () => {
-    fileVerification(fileInput);
+    setAnimation('successDrop', 'successCover');
+    successText();
 });
 
 dropZone.addEventListener('animationend', () => {
