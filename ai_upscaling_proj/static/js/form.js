@@ -8,30 +8,29 @@ $("#generateForm").submit(e => {
     e.preventDefault();
     let form = document.getElementById("generateForm");
     let formData = new FormData(form);
-    if(flag)
-    {
-        $.ajax({
-            type:'POST',
-            data:formData,
-            processData: false,
-            contentType: false,
-            success: data => {
+    $.ajax({
+        type:'POST',
+        data:formData,
+        processData: false,
+        contentType: false,
+        success: data => {
+            if(data === null)
+            {
                 originalImg.setAttribute('src', URL.createObjectURL(fileInput.files[0]));
                 upscaledImg.setAttribute('src', data);
                 modal.showModal();
             }
-        });
-    }
-    else
-    {
-        setAnimation('failDrop', 'failCover');
-        errorText();
-    }
+            else
+            {
+                setAnimation('failDrop', 'failCover');
+                errorText();
+            }
+        }
+    });
 });
 
 closeBtn.addEventListener('click', () => {
     resetText();
     resetInput();
-    flag = false;
     modal.close();
 });
